@@ -17,8 +17,13 @@ def main():
         if player.nationality == given_nationality:
            players.append(player)
 
+    #Kysytty Currechatilta miten lambda-funktio toimii isommasta pienimpään -järjestyksessä. 
+
+    players.sort(key=lambda p: p.points, reverse=True)
+
     #Kysytty Currechatilta miten voidaan tulostaa sanakirjasta sisältö vain tietyn arvon perusteella, mutta ratkaisu ei hyvä.
 
+    print("Players from " + given_nationality + "\n")
     for player in players:
         print(player)
 
