@@ -1,29 +1,17 @@
-import requests
+from playerreader import PlayerReader
+from playerstats import PlayerStats
 from player import Player
 
+#Kysytty CurreChatilta apua tietjoen jakamiseen kahteen luokkaan
+#Kysytty myös selvitystä reader-olion antoon stats-oliolle.
+#Vastausta hyödynnetty soveltuvin osin.
+
 def main():
-
-
     url = "https://studies.cs.helsinki.fi/nhlstats/2024-25/players"
-    response = requests.get(url).json()
+    reader = PlayerReader(url)
+    stats = PlayerStats(reader)
+    players = stats.top_scorers_by_nationality("FIN")
 
-    print("Enter nationality")
-    given_nationality = input()
-
-    players = []
-
-    for player_dict in response:
-        player = Player(player_dict)
-        if player.nationality == given_nationality:
-           players.append(player)
-
-    #Kysytty Currechatilta miten lambda-funktio toimii isommasta pienimpään -järjestyksessä. 
-
-    players.sort(key=lambda p: p.points, reverse=True)
-
-    #Kysytty Currechatilta miten voidaan tulostaa sanakirjasta sisältö vain tietyn arvon perusteella, mutta ratkaisu ei hyvä.
-
-    print("Players from " + given_nationality + "\n")
     for player in players:
         print(player)
 
