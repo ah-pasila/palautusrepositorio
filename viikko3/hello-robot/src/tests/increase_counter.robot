@@ -1,4 +1,4 @@
-*** Settings ***
+e*** Settings ***
 Library  ../CounterLibrary.py
 
 *** Test Cases ***
